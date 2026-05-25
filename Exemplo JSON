@@ -1,0 +1,41 @@
+
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Text.Json;
+
+class Pontuacao
+{
+    public string Nome { get; set; }
+    public int Score { get; set; }
+}
+
+class Program
+{
+    static void Main()
+    {
+        // Lista de pontuações
+        List<Pontuacao> ranking = new List<Pontuacao>();
+
+        // Adiciona pontuação
+        ranking.Add(new Pontuacao
+        {
+            Nome = "Guilherme",
+            Score = 1500
+        });
+
+        // Converte para JSON
+        string json = JsonSerializer.Serialize(
+            ranking,
+            new JsonSerializerOptions
+            {
+                WriteIndented = true // deixa organizado
+            }
+        );
+
+        // Salva no arquivo
+        File.WriteAllText("pontuacoes.json", json);
+
+        Console.WriteLine("Pontuação salva!");
+    }
+}
