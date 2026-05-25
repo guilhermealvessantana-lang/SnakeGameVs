@@ -1,0 +1,28 @@
+_____________________________________________________________________________
+# Para carregar as pontuações novamente quando abrir o jogo:
+
+if (File.Exists("pontuacoes.json"))
+{
+    string json = File.ReadAllText("pontuacoes.json");
+
+    List<Pontuacao> ranking =
+        JsonSerializer.Deserialize<List<Pontuacao>>(json);
+
+    foreach(var p in ranking)
+    {
+        Console.WriteLine($"{p.Nome}: {p.Score}");
+    }
+}
+_____________________________________________________________________________
+# Quando o jogo iniciar:
+
+if (File.Exists("pontuacoes.json"))
+{
+    string json = File.ReadAllText("pontuacoes.json");
+    ranking = JsonSerializer.Deserialize<List<Pontuacao>>(json);
+}
+else
+{
+    ranking = new List<Pontuacao>();
+}
+_____________________________________________________________________________
